@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/surveys', to: 'surveys#index'
+  get '/surveys/new', to: 'surveys#new'
+  post '/surveys', to: 'surveys/create'
 end
