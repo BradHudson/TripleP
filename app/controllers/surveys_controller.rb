@@ -1,5 +1,6 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /surveys
   # GET /surveys.json
@@ -24,8 +25,10 @@ class SurveysController < ApplicationController
   # POST /surveys
   # POST /surveys.json
   def create
+    binding.pry
+    ActionController::Parameters.permit_all_parameters = true
     @survey = Survey.new(survey_params)
-
+    binding.pry
     respond_to do |format|
       if @survey.save
         format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
